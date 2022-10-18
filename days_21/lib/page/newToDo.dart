@@ -1,6 +1,8 @@
 import 'package:days_21/bean/toDo.dart';
+import 'package:days_21/control/ToDoListControl.dart';
 import 'package:days_21/utils/sharedPreference.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NewToDo extends StatelessWidget {
   const NewToDo({super.key});
@@ -10,7 +12,9 @@ class NewToDo extends StatelessWidget {
 //    await Utils().addToDo(todo);
 //    ToDo t = await Utils().getToDo();
 //    print(t.toString());
-  await Utils().addToDoList(todo);
+//    await Utils().addToDoList(todo);
+      ToDoListControl toDoListControl = Get.find();
+      toDoListControl.addToDo(todo);
   }
 
   @override
