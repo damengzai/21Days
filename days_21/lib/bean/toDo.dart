@@ -1,16 +1,16 @@
 class ToDo {
-  int timeStmp;
+  int timeStamp;
   String name = "";
 
-  ToDo({this.name = 'name', this.timeStmp = 0});
+  ToDo({this.name = 'name', this.timeStamp = 0});
 
   factory ToDo.fromJson(Map json) {
-    return ToDo(timeStmp: json['timeStmp'], name: json['name']);
+    return ToDo(timeStamp: json['timeStamp'], name: json['name']);
   }
 
   Map toJson() {
     Map map = Map();
-    map['timeStmp'] = timeStmp;
+    map['timeStamp'] = timeStamp;
     map['name'] = name;
     return map;
   }

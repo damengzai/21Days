@@ -37,7 +37,7 @@ class Utils {
   // 获取TODO List
   Future<List<ToDo>> getToDoList() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String todoListString = prefs.getString(TODOLIST) ?? '[{"name":"name", "timeStmp": 0}]';
+    String todoListString = prefs.getString(TODOLIST) ?? '[{"name":"name", "timeStamp": 0}]';
     List<dynamic> toDoMapList = jsonDecode(todoListString);
     List<ToDo> toDoList = toDoMapList.map((e) => ToDo.fromJson(e)).toList();
     return toDoList;

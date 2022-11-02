@@ -7,6 +7,6 @@ class ToDoListControl extends GetxController{
 
   addToDo(ToDo toDo) {
     toDoList.add(toDo);
-    Utils().addToDoList(toDo);
+    // Utils().addToDoList(toDo);
   }
 }
