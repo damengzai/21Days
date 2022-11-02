@@ -15,7 +15,7 @@ void main() {
     // en, UK
     getPages: [
       GetPage(name: '/home', page: () => MyApp()),
-      GetPage(name: '/newToDo', page: () => const NewToDo())
+      GetPage(name: '/newToDo', page: () => NewToDo())
     ],
   ));
 }

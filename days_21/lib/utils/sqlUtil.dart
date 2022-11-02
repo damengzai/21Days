@@ -26,9 +26,40 @@ insertTodo(ToDo todo) async {
   await db.close();
 }
 //查询所有数据
-getAllTodo() async {
+Future<List<Map>> getAllTodo() async {
   Database db = await getDatabase();
   List<Map> list = await db.rawQuery('SELECT * FROM $TABLE_NAME');
   print(list);
   await db.close();
+  return list;
 }
+
+//获取总数
+Future<int> getToDoNum() async {
+  Database db = await getDatabase();
+  int toDoNum = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM $TABLE_NAME'))??0;
+  await db.close();
+  return toDoNum;
+}
+
+//获取一条数据
+getOneToDo(int id) async {
+  Database db = await getDatabase();
+  await db.rawQuery('SELECT * FROM $TABLE_NAME WHERE id = ?', [id]);
+  await db.close();
+}
+
+//修改数据
+updateTodo(ToDo toDo) async {
+  Database db = await getDatabase();
+  await db.rawUpdate('UPDATE $TABLE_NAME SET name = ? WHERE id = ?', [toDo.name, toDo.id]);
+  await db.close();
+}
+
+// 删除数据
+deleteTodo(ToDo toDo) async {
+  Database db = await getDatabase();
+  await db.rawDelete('DELETE FROM $TABLE_NAME WHERE id = ?', [toDo.id]);
+  await db.close();
+}
+
