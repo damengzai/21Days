@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 
-class MyTransLation extends Translations{
+class MyTranslation extends Translations{
   @override
   // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
     'en': {
+      //主页
       'title': '21Days',
       'doing': 'doing',
       'all': 'all',
@@ -13,9 +14,12 @@ class MyTransLation extends Translations{
       'newTodo': 'new todo',
       'todoName':'name',
       'startDate': 'startDate',
-      'add': 'add'
+      'add': 'add',
+      // 我的页
+      'changeTheme': 'change theme'
     },
     'zh_CN': {
+      //主页
       'title': '21天',
       'doing': '进行中',
       'all': '所有',
@@ -24,7 +28,9 @@ class MyTransLation extends Translations{
       'newTodo': '新建习惯',
       'todoName': '名字',
       'startDate': '开始日期',
-      'add': '添加'
+      'add': '添加',
+      // 我的页
+      'changeTheme': '主题选择'
     }
   };
 

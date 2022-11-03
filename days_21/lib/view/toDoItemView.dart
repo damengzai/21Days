@@ -39,24 +39,28 @@ class ToDoItemView extends StatelessWidget {
     switch (status) {
       case ToDoStatus.DONE:
         return Icon(
+          size: 16,
           key: Key('status_$index'),
           Icons.face_retouching_natural,
           color: Colors.green,
         );
       case ToDoStatus.UNDONE:
         return Icon(
+          size: 16,
           key: Key('status_$index'),
           Icons.face_rounded,
           color: Colors.grey,
         );
       case ToDoStatus.FAILED:
         return Icon(
+          size: 16,
           key: Key('status_$index'),
           Icons.face_retouching_off,
           color: Colors.red,
         );
       default:
         return Icon(
+          size: 16,
           key: Key('status_$index'),
           Icons.format_align_center,
           color: Colors.grey,
@@ -85,7 +89,7 @@ class ToDoItemView extends StatelessWidget {
           ],
         ),
         InkWell(
-          child: Icon(Icons.check),
+          child: const Icon(Icons.check),
           onTap: () {
             print('object');
           },

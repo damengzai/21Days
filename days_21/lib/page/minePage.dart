@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../localTheme.dart';
 
@@ -9,14 +8,43 @@ class MinePage extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          TextButton(
-            onPressed: () {
-              Get.changeTheme(Get.isDarkMode ? lightTheme : darkTheme);
-            },
-            child: Text(
-              'data',
-            ),
-          ),
+          ExpansionTile(
+            title: Text('changeTheme'.tr),
+            expandedAlignment: Alignment.topLeft,
+            expandedCrossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  FilledButton(
+                    onPressed: () {
+                      Get.changeTheme(lightTheme);
+                    },
+                    child: null,
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(lightTheme.primaryColor),
+                      shape: MaterialStateProperty.all(
+                        const CircleBorder(),
+                      ),
+                    ),
+                  ),
+                  FilledButton(
+                    onPressed: () {
+                      Get.changeTheme(darkTheme);
+                    },
+                    child: null,
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(darkTheme.primaryColor),
+                      shape: MaterialStateProperty.all(
+                        const CircleBorder(),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          )
         ],
       ),
     );
