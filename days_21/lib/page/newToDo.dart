@@ -72,7 +72,13 @@ class NewToDo extends StatelessWidget {
                 onPressed: () {
                   addTodo();
                 },
-                child: Text('add'.tr),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                ),
+                child: Text(
+                  'add'.tr,
+                  style: const TextStyle(color: Colors.white),
+                ),
               )
             ],
           ),

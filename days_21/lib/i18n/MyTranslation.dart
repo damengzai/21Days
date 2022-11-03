@@ -6,6 +6,9 @@ class MyTransLation extends Translations{
   Map<String, Map<String, String>> get keys => {
     'en': {
       'title': '21Days',
+      'doing': 'doing',
+      'all': 'all',
+      'mine': 'mine',
       // 新建页
       'newTodo': 'new todo',
       'todoName':'name',
@@ -14,6 +17,9 @@ class MyTransLation extends Translations{
     },
     'zh_CN': {
       'title': '21天',
+      'doing': '进行中',
+      'all': '所有',
+      'mine': '我的',
       // 新建页
       'newTodo': '新建习惯',
       'todoName': '名字',

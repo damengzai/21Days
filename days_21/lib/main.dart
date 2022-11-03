@@ -1,10 +1,12 @@
-import 'package:days_21/control/ToDoListControl.dart';
 import 'package:days_21/i18n/MyTranslation.dart';
 import 'package:days_21/page/newToDo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'view/toDoItemView.dart';
+import 'package:days_21/page/currentToDoPage.dart';
+import 'page/allToDoPage.dart';
+import 'page/minePage.dart';
+import 'localTheme.dart';
+import 'control/mainPageControl.dart';
 
 void main() {
   runApp(GetMaterialApp(
@@ -13,6 +15,10 @@ void main() {
     translations: MyTransLation(),
     locale: Locale('zh', 'CN'),
     // en, UK
+    // 主题
+    theme: lightTheme,
+    darkTheme: darkTheme,
+    themeMode: ThemeMode.light,
     getPages: [
       GetPage(name: '/home', page: () => MyApp()),
       GetPage(name: '/newToDo', page: () => NewToDo())
@@ -22,25 +28,45 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-
-  final toDoListControl = Get.put(ToDoListControl());
-
+  final mainPageControl = Get.put(MainPageControl());
+  final pageList = [
+    CurrentToDoPage(),
+    AllToDoPage(),
+    MinePage()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("title".tr),
       ),
-      body: Center(
-        child: Obx(() => ListView.builder(
-            itemCount: toDoListControl.toDoList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ToDoItemView(
-                key: Key('i' + index.toString()),
-                toDo: toDoListControl.toDoList[index],
-              ); // Text(toDoListControl.toDoList[index].name);
-            })),
-      ),
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+        currentIndex: mainPageControl.currentPageIndex.value,
+        items: [
+          BottomNavigationBarItem(
+            label: 'doing'.tr,
+            icon: Icon(
+              Icons.access_time,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: 'all'.tr,
+            icon: Icon(
+              Icons.align_horizontal_left,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: 'mine'.tr,
+            icon: Icon(
+              Icons.person_outlined,
+            ),
+          ),
+        ],
+        onTap: (int index) {
+          mainPageControl.changePage(index);
+        },
+      )),
+      body: Obx(() => pageList[mainPageControl.currentPageIndex.value]),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed("/newToDo"),
         tooltip: 'Increment',
