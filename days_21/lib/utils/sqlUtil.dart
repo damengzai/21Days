@@ -19,14 +19,14 @@ Future<Database> getDatabase() async {
 }
 
 //插入数据
-insertTodo(ToDo todo) async {
+insertTodoToSql(ToDo todo) async {
   Database db = await getDatabase();
   // db.insert(TABLE_NAME, todo.toJson());
   db.rawInsert('INSERT INTO $TABLE_NAME(timeStamp, name) VALUES(?,?)', [todo.timeStamp, todo.name]);
   await db.close();
 }
 //查询所有数据
-Future<List<Map>> getAllTodo() async {
+Future<List<Map>> getAllTodoFromSql() async {
   Database db = await getDatabase();
   List<Map> list = await db.rawQuery('SELECT * FROM $TABLE_NAME');
   print(list);
@@ -35,7 +35,7 @@ Future<List<Map>> getAllTodo() async {
 }
 
 //获取总数
-Future<int> getToDoNum() async {
+Future<int> getToDoNumFromSql() async {
   Database db = await getDatabase();
   int toDoNum = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM $TABLE_NAME'))??0;
   await db.close();
@@ -43,21 +43,21 @@ Future<int> getToDoNum() async {
 }
 
 //获取一条数据
-getOneToDo(int id) async {
+getOneToDoFromSql(int id) async {
   Database db = await getDatabase();
   await db.rawQuery('SELECT * FROM $TABLE_NAME WHERE id = ?', [id]);
   await db.close();
 }
 
 //修改数据
-updateTodo(ToDo toDo) async {
+updateTodoToSql(ToDo toDo) async {
   Database db = await getDatabase();
   await db.rawUpdate('UPDATE $TABLE_NAME SET name = ? WHERE id = ?', [toDo.name, toDo.id]);
   await db.close();
 }
 
 // 删除数据
-deleteTodo(ToDo toDo) async {
+deleteTodoFromSql(ToDo toDo) async {
   Database db = await getDatabase();
   await db.rawDelete('DELETE FROM $TABLE_NAME WHERE id = ?', [toDo.id]);
   await db.close();

@@ -6,7 +6,7 @@ class ToDo {
   String endDate; // 结束日期
   String clickDate; // 打开到的日期
   int status; // 当前状态 0:未知，1:完成，2:进行中，
-  int type; // 类型 1:正常打卡， 2:反向打卡(不抱怨的世界)
+  int type; // 类型0:未知 1:正常打卡， 2:反向打卡(不抱怨的世界)
 
   ToDo({
     this.id = 1,
@@ -21,14 +21,14 @@ class ToDo {
 
   factory ToDo.fromJson(Map json) {
     return ToDo(
-      id: json['id'],
-      timeStamp: json['timeStamp'],
-      name: json['name'],
-      startDate: json['startDate'],
-      endDate: json['endDate'],
-      clickDate: json['clickDate'],
-      status: json['status'],
-      type: json['type'],
+      id: json['id']??0,
+      timeStamp: json['timeStamp']??0,
+      name: json['name']??'',
+      startDate: json['startDate']??'',
+      endDate: json['endDate']??'',
+      clickDate: json['clickDate']??'',
+      status: json['status']??0,
+      type: json['type']??0,
     );
   }
 

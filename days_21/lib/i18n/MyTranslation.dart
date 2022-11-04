@@ -14,6 +14,7 @@ class MyTranslation extends Translations{
       'newTodo': 'new todo',
       'todoName':'name',
       'startDate': 'startDate',
+      'endDate': 'endDate',
       'add': 'add',
       // 我的页
       'changeTheme': 'change theme'
@@ -28,6 +29,7 @@ class MyTranslation extends Translations{
       'newTodo': '新建习惯',
       'todoName': '名字',
       'startDate': '开始日期',
+      'endDate': '结束日期',
       'add': '添加',
       // 我的页
       'changeTheme': '主题选择'

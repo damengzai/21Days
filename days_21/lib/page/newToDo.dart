@@ -1,10 +1,11 @@
 import 'package:days_21/bean/toDo.dart';
 import 'package:days_21/control/ToDoListControl.dart';
-import 'package:days_21/utils/sqlUtil.dart';
+import 'package:days_21/utils/toDoUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../control/AddToDoControl.dart';
+import '../constant/constants.dart';
 
 class NewToDo extends StatelessWidget {
   NewToDo({super.key});
@@ -25,6 +26,50 @@ class NewToDo extends StatelessWidget {
     await insertTodo(todo);
   }
 
+  renderDateItem(
+    BuildContext context,
+    String title,
+    Rx<DateTime> dateTime,
+    Function selectCallback,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        showDatePicker(
+          context: context,
+          initialDate: DateTime(
+            dateTime.value.year,
+            dateTime.value.month,
+            dateTime.value.day,
+          ),
+          firstDate: DateTime(2022),
+          lastDate: DateTime(2023),
+        ).then((value) {
+          selectCallback(value);
+          // addToDoControl.setStartDate(value ?? DateTime.now());
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: Colors.grey),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title.tr),
+            Obx(
+              () => Text(
+                dateTime.string.substring(0, 10),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,55 +77,60 @@ class NewToDo extends StatelessWidget {
         title: Text('newTodo'.tr),
       ),
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              // 名字
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: 'todoName'.tr),
-              ),
-              // 开始日期
-              GestureDetector(
-                onTap: () {
-                  showDatePicker(
-                    context: context,
-                    initialDate: DateTime(
-                      addToDoControl.startDate.value.year,
-                      addToDoControl.startDate.value.month,
-                      addToDoControl.startDate.value.day,
-                    ),
-                    firstDate: DateTime(2022),
-                    lastDate: DateTime(2023),
-                  ).then((value) {
-                    addToDoControl.setStartDate(value ?? DateTime.now());
-                  });
-                },
-                child: Row(
-                  children: [
-                    Text('startDate'.tr),
-                    Obx(
-                      () => Text(
-                        addToDoControl.startDate.string.substring(0, 10),
-                      ),
-                    ),
-                  ],
+        child: GestureDetector(
+          onTap: () {
+            // FocusScopeNode focusScopeNode = Get.focusScope as FocusScopeNode;
+            print('----------GestureDetector');
+            // FocusScopeNode focusScopeNode = FocusScope.of(context);
+            // if (!focusScopeNode.hasPrimaryFocus &&
+            //     focusScopeNode.focusedChild != null) {
+            //   FocusManager.instance.primaryFocus?.unfocus();
+            // }
+          },
+          child: Center(
+            child: Column(
+              children: [
+                // 名字
+                TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(labelText: 'todoName'.tr),
                 ),
-              ),
-              // 添加按钮
-              TextButton(
-                onPressed: () {
-                  addTodo();
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                // 开始日期
+                renderDateItem(
+                  context,
+                  'startDate',
+                  addToDoControl.startDate,
+                  (value) {
+                    // 设置开始日期
+                    addToDoControl.setStartDate(value);
+                    // 设置结束日期， 默认+21天
+                    addToDoControl
+                        .setEndDate(DateUtils.addDaysToDate(value, 21));
+                  },
                 ),
-                child: Text(
-                  'add'.tr,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              )
-            ],
+                // 结束日期
+                renderDateItem(
+                    context,
+                    'endDate',
+                    addToDoControl.endDate,
+                    (value) => {
+                          {addToDoControl.setEndDate(value ?? DateTime.now())},
+                        }),
+                // 添加按钮
+                TextButton(
+                  onPressed: () {
+                    addTodo();
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  ),
+                  child: Text(
+                    'add'.tr,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

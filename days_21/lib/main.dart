@@ -19,6 +19,7 @@ void main() {
     theme: lightTheme,
     darkTheme: darkTheme,
     themeMode: ThemeMode.light,
+    home: MyApp(),
     getPages: [
       GetPage(name: '/home', page: () => MyApp()),
       GetPage(name: '/newToDo', page: () => NewToDo())
