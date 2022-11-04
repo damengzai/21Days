@@ -10,7 +10,7 @@ class ToDo {
 
   ToDo({
     this.id = 1,
-    this.name = 'name',
+    this.name = '',
     this.timeStamp = 0,
     this.startDate = '',
     this.endDate = '',

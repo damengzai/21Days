@@ -11,17 +11,20 @@ class NewToDo extends StatelessWidget {
   NewToDo({super.key});
 
   final addToDoControl = Get.put(AddToDoControl());
+  ToDoListControl toDoListControl = Get.find();
 
   TextEditingController nameController = TextEditingController();
 
   addTodo() async {
-    ToDo todo =
-        ToDo(name: "第一个", timeStamp: DateTime.now().millisecondsSinceEpoch);
-//    await Utils().addToDo(todo);
-//    ToDo t = await Utils().getToDo();
-//    print(t.toString());
-//    await Utils().addToDoList(todo);
-    ToDoListControl toDoListControl = Get.find();
+    ToDo todo = ToDo(
+        name: nameController.text,
+        timeStamp: DateTime.now().millisecondsSinceEpoch,
+        startDate: addToDoControl.startDate.value.toString(),
+        endDate: addToDoControl.endDate.value.toString(),
+        clickDate: addToDoControl.startDate.value.toString(),
+        status: 2,
+        type: 1);
+
     toDoListControl.addToDo(todo);
     await insertTodo(todo);
   }

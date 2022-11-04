@@ -1,6 +1,7 @@
 import 'package:days_21/i18n/myTranslation.dart';
 import 'package:days_21/page/newToDo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:days_21/page/currentToDoPage.dart';
 import 'page/allToDoPage.dart';
@@ -9,6 +10,10 @@ import 'localTheme.dart';
 import 'control/mainPageControl.dart';
 
 void main() {
+  // debugPaintSizeEnabled=true; // 所有盒子范围
+  // debugPaintBaselinesEnabled = true; // 基线
+  // debugPaintLayerBordersEnabled = true; //所有layer展示橙色边框
+  // debugPaintPointersEnabled = true; // 可点击区域范围
   runApp(GetMaterialApp(
     initialRoute: '/home',
     defaultTransition: Transition.native,
@@ -19,7 +24,7 @@ void main() {
     theme: lightTheme,
     darkTheme: darkTheme,
     themeMode: ThemeMode.light,
-    home: MyApp(),
+    // home: MyApp(),
     getPages: [
       GetPage(name: '/home', page: () => MyApp()),
       GetPage(name: '/newToDo', page: () => NewToDo())

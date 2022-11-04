@@ -39,28 +39,28 @@ class ToDoItemView extends StatelessWidget {
     switch (status) {
       case ToDoStatus.DONE:
         return Icon(
-          size: 16,
+          size: 12,
           key: Key('status_$index'),
           Icons.face_retouching_natural,
           color: Colors.green,
         );
       case ToDoStatus.UNDONE:
         return Icon(
-          size: 16,
+          size: 12,
           key: Key('status_$index'),
           Icons.face_rounded,
           color: Colors.grey,
         );
       case ToDoStatus.FAILED:
         return Icon(
-          size: 16,
+          size: 12,
           key: Key('status_$index'),
           Icons.face_retouching_off,
           color: Colors.red,
         );
       default:
         return Icon(
-          size: 16,
+          size: 12,
           key: Key('status_$index'),
           Icons.format_align_center,
           color: Colors.grey,
@@ -70,31 +70,47 @@ class ToDoItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Column(
-          children: [
-            Text(toDo.name),
-            SizedBox(
-              height: 20,
-              width: Get.width - 50,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: checkDays.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return getC(checkDays[index], index);
-                },
+    return Container(
+      padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: Get.theme.dividerColor),
+        ),
+      ),
+      child: Row(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: Text(
+                  toDo.name,
+                  style: const TextStyle(fontSize: 16),
+                ),
               ),
-            ),
-          ],
-        ),
-        InkWell(
-          child: const Icon(Icons.check),
-          onTap: () {
-            print('object');
-          },
-        ),
-      ],
+              SizedBox(
+                height: 16,
+                width: Get.width - 50,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: checkDays.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return getC(checkDays[index], index);
+                  },
+                ),
+              ),
+            ],
+          ),
+          InkWell(
+            child: const Icon(Icons.check),
+            onTap: () {
+              print('object'+toDo.id.toString());
+            },
+          ),
+        ],
+      ),
     );
   }
 }
