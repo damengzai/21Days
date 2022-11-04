@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../constant/constants.dart';
 
 class AddToDoControl extends GetxController {
   //页面级数据
@@ -6,7 +8,7 @@ class AddToDoControl extends GetxController {
   Rx<DateTime> startDate = DateTime.now().obs;
 
   // 结束日期
-  Rx<DateTime> endDate = DateTime.now().obs;
+  Rx<DateTime> endDate = DateUtils.addDaysToDate(DateTime.now(), toDoDays) .obs;
 
   setStartDate(DateTime startDateTmp) {
     startDate.value = startDateTmp;
