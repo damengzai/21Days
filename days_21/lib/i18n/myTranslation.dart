@@ -11,6 +11,8 @@ class MyTranslation extends Translations{
       'mine': 'mine',
       'clickSuc': 'Click Success',
       'clickFail': 'Click Fail',
+      'hasClicked': 'hasClicked',
+      'unClick': 'unClick',
       // 新建页
       'newTodo': 'new todo',
       'todoName':'name',
@@ -32,6 +34,8 @@ class MyTranslation extends Translations{
       'mine': '我的',
       'clickSuc': '打卡成功',
       'clickFail': '打卡失败',
+      'hasClicked': '今日已打卡',
+      'unClick': '今日未打卡',
       // 新建页
       'newTodo': '新建习惯',
       'todoName': '名字',

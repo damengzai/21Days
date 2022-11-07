@@ -5,21 +5,27 @@ import 'package:get/get.dart';
 import '../bean/toDo.dart';
 import '../bean/toDoStatus.dart';
 
-const rightWidth = 50;
+const rightWidth = 80;
 
 class ToDoItemView extends StatelessWidget {
   final ToDo toDo;
   var checkDays = [];
+  bool todayHasClicked = false;
+  String todayClickNotice = 'unClick'.tr;
+  IconData clickIcon = Icons.check_circle_outline;
 
   ToDoItemView({required Key key, required this.toDo}) : super(key: key) {
-    DateTime startDate =
-        DateUtils.dateOnly(DateTime.tryParse(toDo.startDate) ?? DateTime.now());
-    DateTime clickDate =
-        DateUtils.dateOnly(DateTime.tryParse(toDo.clickDate) ?? DateTime.now());
-    DateTime endDate =
-        DateUtils.dateOnly(DateTime.tryParse(toDo.endDate) ?? DateTime.now());
-    int clickDiffDays = clickDate.difference(startDate).inDays;
+    DateTime today = DateTime.now();
+    DateTime startDate = DateTime.tryParse(toDo.startDate) ?? DateTime.now();
+    DateTime clickDate = DateTime.tryParse(toDo.clickDate) ?? DateTime.now();
+    DateTime endDate = DateTime.tryParse(toDo.endDate) ?? DateTime.now();
+    int clickDiffDays = clickDate.difference(startDate).inDays + 1;
     int todoDiffDays = endDate.difference(startDate).inDays;
+    todayHasClicked = today.difference(clickDate).inDays < 1;
+    todayClickNotice = todayHasClicked ? 'hasClicked'.tr : 'unClick'.tr;
+    clickIcon = todayHasClicked
+        ? Icons.mark_email_read_outlined
+        : Icons.check_circle_outline;
     int i = 0;
     while (i < todoDiffDays) {
       if (i < clickDiffDays) {
@@ -58,7 +64,7 @@ class ToDoItemView extends StatelessWidget {
         return Icon(
           size: 12,
           key: Key('status_$index'),
-          Icons.format_align_center,
+          Icons.face_rounded,
           color: Colors.grey,
         );
     }
@@ -146,10 +152,33 @@ class ToDoItemView extends StatelessWidget {
             ],
           ),
           InkWell(
-            child: const Icon(Icons.check),
+            child: Column(
+              children: [
+                Icon(
+                  clickIcon,
+                  size: 29,
+                ),
+                Text(
+                  todayClickNotice,
+                  style: const TextStyle(fontSize: 10),
+                ),
+              ],
+            ),
             onTap: () {
-              print('object' + toDo.id.toString());
-              clickToday();
+              if(todayHasClicked) {
+                Get.showSnackbar(
+                  GetSnackBar(
+                    messageText: Text(
+                      'hasClicked'.tr,
+                      style: snakeBarTextStyle,
+                    ),
+                    duration: const Duration(seconds: 2),
+                  ),
+                );
+              } else {
+                clickToday();
+              }
+
             },
           ),
         ],
