@@ -1,3 +1,14 @@
+enum toDoStatus{
+ unKnown,
+ done,
+ doing
+}
+enum toDoType{
+  unKnown,
+  normal,
+  revert
+}
+
 class ToDo {
   int id; // 主键
   int timeStamp;

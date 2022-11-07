@@ -4,9 +4,7 @@ import '../bean/toDo.dart';
 import '../control/toDoListControl.dart';
 import '../utils/toDoUtils.dart';
 
-
 import '../control/addToDoControl.dart';
-import '../constant/constants.dart';
 
 class NewToDo extends StatelessWidget {
   NewToDo({super.key});
@@ -24,7 +22,7 @@ class NewToDo extends StatelessWidget {
         endDate: addToDoControl.endDate.value.toString(),
         clickDate: addToDoControl.startDate.value.toString(),
         status: 2,
-        type: 1);
+        type: addToDoControl.revertClick.value ? 2 : 1);
 
     toDoListControl.addToDo(todo);
     await insertTodo(todo);
@@ -120,6 +118,12 @@ class NewToDo extends StatelessWidget {
                     (value) => {
                           {addToDoControl.setEndDate(value ?? DateTime.now())},
                         }),
+                // 反向打卡按钮
+                Obx(() => Checkbox(
+                    value: addToDoControl.revertClick.value,
+                    onChanged: (bool? checked) {
+                      addToDoControl.setRevertClick(checked ?? false);
+                    })),
                 // 添加按钮
                 TextButton(
                   onPressed: () {

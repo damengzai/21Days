@@ -10,11 +10,17 @@ class AddToDoControl extends GetxController {
   // 结束日期
   Rx<DateTime> endDate = DateUtils.addDaysToDate(DateTime.now(), toDoDays) .obs;
 
+  //是否反向打卡
+  Rx<bool> revertClick = false.obs;
+
   setStartDate(DateTime startDateTmp) {
     startDate.value = startDateTmp;
   }
 
   setEndDate(DateTime endDateTmp) {
     endDate.value = endDateTmp;
+  }
+  setRevertClick(bool revertClickTmp) {
+    revertClick.value = revertClickTmp;
   }
 }

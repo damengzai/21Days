@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'sqlUtil.dart';
 import '../bean/toDo.dart';
 
@@ -24,4 +26,15 @@ Future<int> deleteTodo(int id) async {
 Future<int> updateTodo(ToDo todo) async {
   int result = await updateTodoToSql(todo);
   return result;
+}
+
+//自动打卡，对于反向打卡的todo来说，打开app自动刷新数据，更改到已打卡状态
+autoClickToDos(List<ToDo> todoList) {
+  if(todoList.isNotEmpty) {
+    for (ToDo element in todoList) {
+      if(element.type == 2) {
+        element.clickDate = DateTime.now().toString();
+      }
+    }
+  }
 }

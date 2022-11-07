@@ -165,20 +165,14 @@ class ToDoItemView extends StatelessWidget {
               ],
             ),
             onTap: () {
-              if(todayHasClicked) {
-                Get.showSnackbar(
-                  GetSnackBar(
-                    messageText: Text(
-                      'hasClicked'.tr,
-                      style: snakeBarTextStyle,
-                    ),
-                    duration: const Duration(seconds: 2),
-                  ),
-                );
+              if (todayHasClicked) {
+                Get.showSnackbar(GetSnackBar(
+                    messageText:
+                        Text('hasClicked'.tr, style: snakeBarTextStyle),
+                    duration: const Duration(seconds: 2)));
               } else {
                 clickToday();
               }
-
             },
           ),
         ],

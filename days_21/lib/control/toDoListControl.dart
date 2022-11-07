@@ -18,6 +18,7 @@ class ToDoListControl extends GetxController {
   void onInit() {
     super.onInit();
     getAllTodos().then((todoList) {
+      autoClickToDos(todoList);
       toDoList.value = todoList;
     });
   }
