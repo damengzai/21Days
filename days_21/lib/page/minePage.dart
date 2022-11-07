@@ -1,8 +1,13 @@
+import 'package:days_21/control/toDoListControl.dart';
+import 'package:days_21/utils/toDoUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../localTheme.dart';
 
 class MinePage extends StatelessWidget {
+  MinePage({super.key});
+  ToDoListControl toDoListControl = Get.find();
+  TextEditingController idController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -44,7 +49,48 @@ class MinePage extends StatelessWidget {
                 ],
               ),
             ],
-          )
+          ),
+          ExpansionTile(
+            title: Text('testData'.tr),
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: TextField(
+                        controller: idController,
+                        decoration: InputDecoration(labelText: 'id'),
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        int id = int.parse(idController.value.text);
+                        deleteTodo(id).then((value) {
+                          if (value > 0) {
+                            Get.showSnackbar(GetSnackBar(
+                              messageText: Text('deleteSuc'.tr),
+                              duration: const Duration(seconds: 2),
+                            ));
+                            toDoListControl.removeToDo(id);
+                          } else {
+                            Get.showSnackbar(GetSnackBar(
+                              messageText: Text('deleteFail'.tr),
+                              duration: const Duration(seconds: 2),
+                            ));
+                          }
+                        });
+                      },
+                      child: Text('delete'.tr),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

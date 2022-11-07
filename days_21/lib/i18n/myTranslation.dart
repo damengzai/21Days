@@ -17,7 +17,11 @@ class MyTranslation extends Translations{
       'endDate': 'endDate',
       'add': 'add',
       // 我的页
-      'changeTheme': 'change theme'
+      'changeTheme': 'change theme',
+      'testData': 'testData',
+      'delete': 'delete',
+      'deleteSuc': 'Delete Success',
+      'deleteFail': 'Delete Failed'
     },
     'zh_CN': {
       //主页
@@ -32,7 +36,11 @@ class MyTranslation extends Translations{
       'endDate': '结束日期',
       'add': '添加',
       // 我的页
-      'changeTheme': '主题选择'
+      'changeTheme': '主题选择',
+      'testData': '测试数据',
+      'delete': '删除',
+      'deleteSuc': '删除成功',
+      'deleteFail': '删除失败'
     }
   };
 

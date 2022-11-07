@@ -10,12 +10,13 @@ Future<Database> getDatabase() async {
   String dbPath = await getDatabasesPath();
   String path = dbPath + DB_NAME;
 
-  Database database = await openDatabase(path, version: VERSION,
-      onCreate: (Database db, int version) async {
-    await db.execute(
-        'CREATE TABLE $TABLE_NAME(id INTEGER PRIMARY KEY, timeStamp INTEGER, name TEXT, startDate TEXT, endDate TEXT, clickDate TEXT, status INTEGER, type INTEGER)');
-  },
-  //     onUpgrade: (Database db, int oldVersion, int newVersion) {
+  Database database = await openDatabase(
+    path, version: VERSION,
+    onCreate: (Database db, int version) async {
+      await db.execute(
+          'CREATE TABLE $TABLE_NAME(id INTEGER PRIMARY KEY, timeStamp INTEGER, name TEXT, startDate TEXT, endDate TEXT, clickDate TEXT, status INTEGER, type INTEGER)');
+    },
+    //     onUpgrade: (Database db, int oldVersion, int newVersion) {
     //   try {
     //     var batch = db.batch();
     //     if (oldVersion == 4) {
@@ -105,8 +106,18 @@ updateTodoToSql(ToDo toDo) async {
 // }
 
 // 删除数据
-deleteTodoFromSql(ToDo toDo) async {
+Future<int> deleteTodoFromSql(ToDo toDo) async {
   Database db = await getDatabase();
-  await db.rawDelete('DELETE FROM $TABLE_NAME WHERE id = ?', [toDo.id]);
+  int result =
+      await db.rawDelete('DELETE FROM $TABLE_NAME WHERE id = ?', [toDo.id]);
   await db.close();
+  return result;
+}
+
+// 删除数据
+Future<int> deleteToDoFromSqlById(int id) async {
+  Database db = await getDatabase();
+  int result = await db.rawDelete('DELETE FROM $TABLE_NAME WHERE id = ?', [id]);
+  await db.close();
+  return result;
 }

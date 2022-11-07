@@ -11,7 +11,12 @@ Future<List<ToDo>> getAllTodos() async {
 
 //插入一条todo
 Future<int> insertTodo(ToDo toDo) async {
-  print(toDo);
   int result = await insertTodoToSql(toDo);
+  return result;
+}
+
+//删除一条todo
+Future<int> deleteTodo(int id) async {
+  int result = await deleteToDoFromSqlById(id);
   return result;
 }
