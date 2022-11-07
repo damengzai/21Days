@@ -1,10 +1,10 @@
 import 'package:days_21/bean/toDo.dart';
-import 'package:days_21/control/ToDoListControl.dart';
+import 'package:days_21/control/toDoListControl.dart';
 import 'package:days_21/utils/toDoUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../control/AddToDoControl.dart';
+import '../control/addToDoControl.dart';
 import '../constant/constants.dart';
 
 class NewToDo extends StatelessWidget {
