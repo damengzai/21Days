@@ -1,5 +1,5 @@
-import 'package:days_21/bean/toDo.dart';
 import 'package:sqflite/sqflite.dart';
+import '../bean/toDo.dart';
 
 const String DB_NAME = '/todo.db';
 const String TABLE_NAME = 'todoList';

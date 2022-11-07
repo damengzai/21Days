@@ -1,9 +1,4 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../page/currentToDoPage.dart';
-import '../page/allToDoPage.dart';
-import '../page/minePage.dart';
-
 class MainPageControl extends GetxController {
   // Rx<Widget> currentPage = CurrentToDoPage().obs;
   Rx<int> currentPageIndex = 0.obs;

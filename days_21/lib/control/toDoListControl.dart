@@ -1,7 +1,6 @@
-import 'package:days_21/bean/toDo.dart';
-import 'package:days_21/utils/sharedPreference.dart';
 import 'package:get/get.dart';
 import '../utils/toDoUtils.dart';
+import '../bean/toDo.dart';
 
 class ToDoListControl extends GetxController {
   final toDoList = [ToDo(name: "old")].obs;
@@ -13,7 +12,6 @@ class ToDoListControl extends GetxController {
 
   removeToDo(int toDoId) {
     toDoList.removeWhere((element) => element.id == toDoId);
-
   }
 
   @override

@@ -1,7 +1,6 @@
 import 'dart:convert';
-
-import 'package:days_21/bean/toDo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../bean/toDo.dart';
 
 const String TODO = 'todo';
 const String TODOLIST = 'todo_list';

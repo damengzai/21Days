@@ -1,6 +1,5 @@
-import 'package:days_21/bean/toDo.dart';
-
 import 'sqlUtil.dart';
+import '../bean/toDo.dart';
 
 //获取所有todos
 Future<List<ToDo>> getAllTodos() async {

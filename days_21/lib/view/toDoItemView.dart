@@ -1,8 +1,7 @@
-import 'package:days_21/bean/toDoStatus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../bean/toDo.dart';
+import '../bean/toDoStatus.dart';
 
 const rightWidth = 50;
 

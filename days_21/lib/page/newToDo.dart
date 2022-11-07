@@ -1,8 +1,9 @@
-import 'package:days_21/bean/toDo.dart';
-import 'package:days_21/control/toDoListControl.dart';
-import 'package:days_21/utils/toDoUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../bean/toDo.dart';
+import '../control/toDoListControl.dart';
+import '../utils/toDoUtils.dart';
+
 
 import '../control/addToDoControl.dart';
 import '../constant/constants.dart';

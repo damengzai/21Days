@@ -1,12 +1,12 @@
-import 'package:days_21/i18n/myTranslation.dart';
-import 'package:days_21/page/newToDo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:days_21/page/currentToDoPage.dart';
+import 'i18n/myTranslation.dart';
+import 'localTheme.dart';
+import 'page/newToDo.dart';
+import 'page/currentToDoPage.dart';
 import 'page/allToDoPage.dart';
 import 'page/minePage.dart';
-import 'localTheme.dart';
 import 'control/mainPageControl.dart';
 
 void main() {

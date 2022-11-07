@@ -1,8 +1,8 @@
-import 'package:days_21/control/toDoListControl.dart';
-import 'package:days_21/utils/toDoUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../localTheme.dart';
+import '../control/toDoListControl.dart';
+import '../utils/toDoUtils.dart';
 
 class MinePage extends StatelessWidget {
   MinePage({super.key});
