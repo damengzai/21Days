@@ -81,9 +81,9 @@ getOneToDoFromSql(int id) async {
 }
 
 //修改数据
-updateTodoToSql(ToDo toDo) async {
+Future<int> updateTodoToSql(ToDo toDo) async {
   Database db = await getDatabase();
-  await db.rawUpdate(
+  int result = await db.rawUpdate(
       'UPDATE $TABLE_NAME SET name = ?, startDate = ?, endDate = ?, clickDate = ?,status = ?,type = ?  WHERE id = ?',
       [
         toDo.name,
@@ -95,6 +95,7 @@ updateTodoToSql(ToDo toDo) async {
         toDo.id
       ]);
   await db.close();
+  return result;
 }
 
 // // 修改状态

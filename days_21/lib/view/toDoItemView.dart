@@ -1,3 +1,5 @@
+import 'package:days_21/constant/constants.dart';
+import 'package:days_21/utils/toDoUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../bean/toDo.dart';
@@ -10,30 +12,23 @@ class ToDoItemView extends StatelessWidget {
   var checkDays = [];
 
   ToDoItemView({required Key key, required this.toDo}) : super(key: key) {
-    checkDays = [
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.DONE,
-      ToDoStatus.FAILED,
-      ToDoStatus.UNDONE,
-      ToDoStatus.UNKNOWN,
-      ToDoStatus.UNKNOWN,
-      ToDoStatus.UNKNOWN,
-      ToDoStatus.UNKNOWN,
-      ToDoStatus.UNKNOWN
-    ];
+    DateTime startDate =
+        DateUtils.dateOnly(DateTime.tryParse(toDo.startDate) ?? DateTime.now());
+    DateTime clickDate =
+        DateUtils.dateOnly(DateTime.tryParse(toDo.clickDate) ?? DateTime.now());
+    DateTime endDate =
+        DateUtils.dateOnly(DateTime.tryParse(toDo.endDate) ?? DateTime.now());
+    int clickDiffDays = clickDate.difference(startDate).inDays;
+    int todoDiffDays = endDate.difference(startDate).inDays;
+    int i = 0;
+    while (i < todoDiffDays) {
+      if (i < clickDiffDays) {
+        checkDays.add(ToDoStatus.DONE);
+      } else {
+        checkDays.add(ToDoStatus.UNDONE);
+      }
+      ++i;
+    }
   }
 
   Widget getC(ToDoStatus status, int index) {
@@ -74,6 +69,34 @@ class ToDoItemView extends StatelessWidget {
       return date.substring(0, 10);
     }
     return '';
+  }
+
+  // 今日打卡
+  clickToday() {
+    toDo.clickDate = DateTime.now().toString();
+    updateTodo(toDo).then((value) {
+      if (value > 0) {
+        Get.showSnackbar(
+          GetSnackBar(
+            messageText: Text(
+              'clickSuc'.tr,
+              style: snakeBarTextStyle,
+            ),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      } else {
+        Get.showSnackbar(
+          GetSnackBar(
+            messageText: Text(
+              'clickFail'.tr,
+              style: snakeBarTextStyle,
+            ),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
+    });
   }
 
   @override
@@ -126,6 +149,7 @@ class ToDoItemView extends StatelessWidget {
             child: const Icon(Icons.check),
             onTap: () {
               print('object' + toDo.id.toString());
+              clickToday();
             },
           ),
         ],

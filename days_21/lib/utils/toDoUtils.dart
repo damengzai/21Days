@@ -19,3 +19,9 @@ Future<int> deleteTodo(int id) async {
   int result = await deleteToDoFromSqlById(id);
   return result;
 }
+
+//更改数据
+Future<int> updateTodo(ToDo todo) async {
+  int result = await updateTodoToSql(todo);
+  return result;
+}

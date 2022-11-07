@@ -1,3 +1,4 @@
+import 'package:days_21/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../localTheme.dart';
@@ -6,8 +7,10 @@ import '../utils/toDoUtils.dart';
 
 class MinePage extends StatelessWidget {
   MinePage({super.key});
+
   ToDoListControl toDoListControl = Get.find();
   TextEditingController idController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -72,13 +75,19 @@ class MinePage extends StatelessWidget {
                         deleteTodo(id).then((value) {
                           if (value > 0) {
                             Get.showSnackbar(GetSnackBar(
-                              messageText: Text('deleteSuc'.tr),
+                              messageText: Text(
+                                'deleteSuc'.tr,
+                                style: snakeBarTextStyle,
+                              ),
                               duration: const Duration(seconds: 2),
                             ));
                             toDoListControl.removeToDo(id);
                           } else {
                             Get.showSnackbar(GetSnackBar(
-                              messageText: Text('deleteFail'.tr),
+                              messageText: Text(
+                                'deleteFail'.tr,
+                                style: snakeBarTextStyle,
+                              ),
                               duration: const Duration(seconds: 2),
                             ));
                           }

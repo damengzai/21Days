@@ -9,6 +9,8 @@ class MyTranslation extends Translations{
       'doing': 'doing',
       'all': 'all',
       'mine': 'mine',
+      'clickSuc': 'Click Success',
+      'clickFail': 'Click Fail',
       // 新建页
       'newTodo': 'new todo',
       'todoName':'name',
@@ -28,6 +30,8 @@ class MyTranslation extends Translations{
       'doing': '进行中',
       'all': '所有',
       'mine': '我的',
+      'clickSuc': '打卡成功',
+      'clickFail': '打卡失败',
       // 新建页
       'newTodo': '新建习惯',
       'todoName': '名字',
