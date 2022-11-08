@@ -32,8 +32,9 @@ Future<int> updateTodo(ToDo todo) async {
 autoClickToDos(List<ToDo> todoList) {
   if(todoList.isNotEmpty) {
     for (ToDo element in todoList) {
-      if(element.type == 2) {
+      if(element.type == toDoType.revert.index) {
         element.clickDate = DateTime.now().toString();
+        updateTodo(element);
       }
     }
   }

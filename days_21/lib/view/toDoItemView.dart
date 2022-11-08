@@ -16,9 +16,10 @@ class ToDoItemView extends StatelessWidget {
 
   ToDoItemView({required Key key, required this.toDo}) : super(key: key) {
     DateTime today = DateTime.now();
-    DateTime startDate = DateTime.tryParse(toDo.startDate) ?? DateTime.now();
-    DateTime clickDate = DateTime.tryParse(toDo.clickDate) ?? DateTime.now();
-    DateTime endDate = DateTime.tryParse(toDo.endDate) ?? DateTime.now();
+    DateTime startDate = DateUtils.dateOnly(DateTime.tryParse(toDo.startDate) ?? DateTime.now());
+    DateTime clickDate = DateUtils.dateOnly(DateTime.tryParse(toDo.clickDate) ?? DateTime.now());
+    DateTime endDate = DateUtils.dateOnly(DateTime.tryParse(toDo.endDate) ?? DateTime.now());
+
     int clickDiffDays = clickDate.difference(startDate).inDays + 1;
     int todoDiffDays = endDate.difference(startDate).inDays;
     todayHasClicked = today.difference(clickDate).inDays < 1;
