@@ -5,7 +5,7 @@ import '../view/toDoItemView.dart';
 
 
 class AllToDoPage extends StatelessWidget{
-  final toDoListControl = Get.put(ToDoListControl());
+  ToDoListControl toDoListControl = Get.find();
 
   @override
   Widget build(BuildContext context) {

@@ -19,6 +19,11 @@ class MyTranslation extends Translations{
       'startDate': 'startDate',
       'endDate': 'endDate',
       'add': 'add',
+      'revertClick': 'revertClick',
+      'whatsRevertClick':'what`s RevertClick',
+      'addSuc':'Add Success',
+      'addFail': 'Add Failed',
+      'nameNotEmpty': 'Name Not Empty',
       // 我的页
       'changeTheme': 'change theme',
       'testData': 'testData',
@@ -42,6 +47,11 @@ class MyTranslation extends Translations{
       'startDate': '开始日期',
       'endDate': '结束日期',
       'add': '添加',
+      'revertClick': '反向打卡',
+      'whatsRevertClick':'    什么是反向打卡，即不用每天主动打卡，系统会自动打卡，只有失败的时候才需要来点击放弃，类似"不抱怨的世界"',
+      'addSuc':'添加成功',
+      'addFail': '添加失败',
+      'nameNotEmpty': '名字不可为空',
       // 我的页
       'changeTheme': '主题选择',
       'testData': '测试数据',

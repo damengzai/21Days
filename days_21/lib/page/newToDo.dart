@@ -1,3 +1,4 @@
+import 'package:days_21/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../bean/toDo.dart';
@@ -15,6 +16,14 @@ class NewToDo extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
 
   addTodo() async {
+    if (nameController.text.isEmpty) {
+      Get.showSnackbar(
+        GetSnackBar(
+          messageText: Text('nameNotEmpty'.tr, style: snakeBarTextStyle),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
     ToDo todo = ToDo(
         name: nameController.text,
         timeStamp: DateTime.now().millisecondsSinceEpoch,
@@ -25,7 +34,25 @@ class NewToDo extends StatelessWidget {
         type: addToDoControl.revertClick.value ? 2 : 1);
 
     toDoListControl.addToDo(todo);
-    await insertTodo(todo);
+    insertTodo(todo).then((value) {
+      if (value > 0) {
+        Get.showSnackbar(GetSnackBar(
+          messageText: Text(
+            'addSuc'.tr,
+            style: snakeBarTextStyle,
+          ),
+          duration: const Duration(seconds: 2),
+        ));
+      } else {
+        Get.showSnackbar(GetSnackBar(
+          messageText: Text(
+            'addFail'.tr,
+            style: snakeBarTextStyle,
+          ),
+          duration: const Duration(seconds: 2),
+        ));
+      }
+    });
   }
 
   renderDateItem(
@@ -74,28 +101,30 @@ class NewToDo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('newTodo'.tr),
-      ),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () {
-            // FocusScopeNode focusScopeNode = Get.focusScope as FocusScopeNode;
-            print('----------GestureDetector');
-            // FocusScopeNode focusScopeNode = FocusScope.of(context);
-            // if (!focusScopeNode.hasPrimaryFocus &&
-            //     focusScopeNode.focusedChild != null) {
-            //   FocusManager.instance.primaryFocus?.unfocus();
-            // }
-          },
+    return GestureDetector(
+      onTap: () {
+        // FocusScopeNode focusScopeNode = Get.focusScope as FocusScopeNode;
+        FocusScopeNode focusScopeNode = FocusScope.of(context);
+        if (!focusScopeNode.hasPrimaryFocus &&
+            focusScopeNode.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('newTodo'.tr),
+        ),
+        body: SafeArea(
           child: Center(
             child: Column(
               children: [
                 // 名字
                 TextField(
                   controller: nameController,
-                  decoration: InputDecoration(labelText: 'todoName'.tr),
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(10),
+                      labelText: 'todoName'.tr,
+                      labelStyle: const TextStyle(fontSize: 14)),
                 ),
                 // 开始日期
                 renderDateItem(
@@ -119,11 +148,23 @@ class NewToDo extends StatelessWidget {
                           {addToDoControl.setEndDate(value ?? DateTime.now())},
                         }),
                 // 反向打卡按钮
-                Obx(() => Checkbox(
-                    value: addToDoControl.revertClick.value,
-                    onChanged: (bool? checked) {
-                      addToDoControl.setRevertClick(checked ?? false);
-                    })),
+                Row(
+                  children: [
+                    Obx(() => Checkbox(
+                        value: addToDoControl.revertClick.value,
+                        onChanged: (bool? checked) {
+                          addToDoControl.setRevertClick(checked ?? false);
+                        })),
+                    Text(
+                      'revertClick'.tr,
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                    )
+                  ],
+                ),
+                Text(
+                  'whatsRevertClick'.tr,
+                  style: const TextStyle(fontSize: 10, color: Colors.grey),
+                ),
                 // 添加按钮
                 TextButton(
                   onPressed: () {
