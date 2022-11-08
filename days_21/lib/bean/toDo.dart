@@ -1,12 +1,14 @@
-enum toDoStatus{
- unKnown,
- done,
- doing
+enum toDoStatus {
+  unKnown,
+  done,
+  doing,
+  giveUp,
 }
-enum toDoType{
+
+enum toDoType {
   unKnown,
   normal,
-  revert
+  revert,
 }
 
 class ToDo {
@@ -32,14 +34,14 @@ class ToDo {
 
   factory ToDo.fromJson(Map json) {
     return ToDo(
-      id: json['id']??0,
-      timeStamp: json['timeStamp']??0,
-      name: json['name']??'',
-      startDate: json['startDate']??'',
-      endDate: json['endDate']??'',
-      clickDate: json['clickDate']??'',
-      status: json['status']??0,
-      type: json['type']??0,
+      id: json['id'] ?? 0,
+      timeStamp: json['timeStamp'] ?? 0,
+      name: json['name'] ?? '',
+      startDate: json['startDate'] ?? '',
+      endDate: json['endDate'] ?? '',
+      clickDate: json['clickDate'] ?? '',
+      status: json['status'] ?? 0,
+      type: json['type'] ?? 0,
     );
   }
 

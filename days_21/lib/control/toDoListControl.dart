@@ -12,6 +12,10 @@ class ToDoListControl extends GetxController {
     doingToDoList.add(toDo);
   }
 
+  removeDoingTodo(ToDo toDo) {
+    doingToDoList.removeWhere((item) => item.id == toDo.id);
+  }
+
   removeToDo(int toDoId) {
     toDoList.removeWhere((element) => element.id == toDoId);
   }
