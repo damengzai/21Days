@@ -58,7 +58,14 @@ Future<int> insertTodoToSql(ToDo todo) async {
 Future<List<Map>> getAllTodoFromSql() async {
   Database db = await getDatabase();
   List<Map> list = await db.rawQuery('SELECT * FROM $TABLE_NAME');
-  print(list);
+  await db.close();
+  return list;
+}
+
+//查询所有进行中数据
+Future<List<Map>> getAllDoingTodoFromSql() async {
+  Database db = await getDatabase();
+  List<Map> list = await db.rawQuery('SELECT * FROM $TABLE_NAME WHERE status = ?', [toDoStatus.doing.index]);
   await db.close();
   return list;
 }

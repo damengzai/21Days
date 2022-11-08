@@ -30,10 +30,10 @@ class NewToDo extends StatelessWidget {
         startDate: addToDoControl.startDate.value.toString(),
         endDate: addToDoControl.endDate.value.toString(),
         clickDate: addToDoControl.startDate.value.toString(),
-        status: 2,
-        type: addToDoControl.revertClick.value ? 2 : 1);
+        status: toDoStatus.doing.index,
+        type: addToDoControl.revertClick.value ? toDoType.revert.index : toDoType.normal.index);
 
-    toDoListControl.addToDo(todo);
+    toDoListControl.addDoingToDo(todo);
     insertTodo(todo).then((value) {
       if (value > 0) {
         Get.showSnackbar(GetSnackBar(

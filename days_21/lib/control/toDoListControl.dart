@@ -6,9 +6,10 @@ import '../bean/toDo.dart';
 
 class ToDoListControl extends GetxController {
   final toDoList = [ToDo(name: "old")].obs;
+  final doingToDoList = [].obs;
 
-  addToDo(ToDo toDo) {
-    toDoList.add(toDo);
+  addDoingToDo(ToDo toDo) {
+    doingToDoList.add(toDo);
   }
 
   removeToDo(int toDoId) {
@@ -28,6 +29,9 @@ class ToDoListControl extends GetxController {
         autoClickToDos(todoList);
         setAutoClickDate(DateTime.now().toString());
       }
+      doingToDoList.value = todoList
+          .where((todoItem) => todoItem.status == toDoStatus.doing.index)
+          .toList();
       toDoList.value = todoList;
     });
   }

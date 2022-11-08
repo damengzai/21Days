@@ -10,11 +10,11 @@ class CurrentToDoPage extends StatelessWidget{
   Widget build(BuildContext context) {
     return  Center(
       child: Obx(() => ListView.builder(
-          itemCount: toDoListControl.toDoList.length,
+          itemCount: toDoListControl.doingToDoList.length,
           itemBuilder: (BuildContext context, int index) {
             return ToDoItemView(
               key: Key('i' + index.toString()),
-              toDo: toDoListControl.toDoList[index],
+              toDo: toDoListControl.doingToDoList[index],
             ); // Text(toDoListControl.toDoList[index].name);
           })),
     );

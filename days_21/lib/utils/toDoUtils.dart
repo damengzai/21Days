@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'sqlUtil.dart';
 import '../bean/toDo.dart';
 
@@ -9,6 +7,13 @@ Future<List<ToDo>> getAllTodos() async {
   List<ToDo> toDoList = allTodoMap.map((e) => ToDo.fromJson(e)).toList();
   return toDoList;
 }
+
+Future<List<ToDo>> getAllDoingTodos() async {
+  List<Map> allDoingTodoMap = await getAllDoingTodoFromSql();
+  List<ToDo> toDoList = allDoingTodoMap.map((e) => ToDo.fromJson(e)).toList();
+  return toDoList;
+}
+
 
 //插入一条todo
 Future<int> insertTodo(ToDo toDo) async {
