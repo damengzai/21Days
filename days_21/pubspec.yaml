@@ -41,6 +41,9 @@ dependencies:
   # 数据库
   sqflite: ^2.2.0+2
 
+  # 横滑删除
+  flutter_slidable: ^2.0.0
+
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -14,7 +14,7 @@ class ToDoItemView extends StatelessWidget {
   String todayClickNotice = 'unClick'.tr;
   IconData clickIcon = Icons.check_circle_outline;
 
-  ToDoItemView({required Key key, required this.toDo}) : super(key: key) {
+  ToDoItemView({super.key, required this.toDo}) {
     DateTime today = DateTime.now();
     DateTime startDate = DateUtils.dateOnly(DateTime.tryParse(toDo.startDate) ?? DateTime.now());
     DateTime clickDate = DateUtils.dateOnly(DateTime.tryParse(toDo.clickDate) ?? DateTime.now());
