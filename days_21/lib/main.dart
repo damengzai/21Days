@@ -61,7 +61,10 @@ class MyApp extends StatelessWidget {
           )),
       body: Obx(() => pageList[mainPageControl.currentPageIndex.value]),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed("/newToDo"),
+        onPressed: () {
+          // Get.toNamed("/newToDo");
+          Get.to(() => NewToDo(), transition: Transition.rightToLeft);
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

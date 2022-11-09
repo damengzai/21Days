@@ -81,7 +81,7 @@ class FlipCard extends StatefulWidget {
   final BoolCallback? onFlipDone;
 
   // final FlipCardController? controller;
-  final Fill fill;
+  // final Fill fill;
   final CardSide side;
 
   final bool flipOnTouch;
@@ -98,7 +98,7 @@ class FlipCard extends StatefulWidget {
     // this.controller,
     this.flipOnTouch = true,
     this.alignment = Alignment.center,
-    this.fill = Fill.none,
+    // this.fill = Fill.none,
     this.side = CardSide.FRONT,
   }) : super(key: key);
 
@@ -169,14 +169,16 @@ class FlipCardState extends State<FlipCard>
 
   @override
   Widget build(BuildContext context) {
-    final frontPositioning = widget.fill == Fill.fillFront ? _fill : _noop;
-    final backPositioning = widget.fill == Fill.fillBack ? _fill : _noop;
+    // final frontPositioning = widget.fill == Fill.fillFront ? _fill : _noop;
+    // final backPositioning = widget.fill == Fill.fillBack ? _fill : _noop;
     final child = Stack(
       alignment: widget.alignment,
-      fit: StackFit.passthrough,
+      // fit: StackFit.passthrough,
       children: <Widget>[
-        frontPositioning(_buildContent(front: true)),
-        backPositioning(_buildContent(front: false))
+        _buildContent(front: true),
+        _buildContent(front: false)
+        // frontPositioning(_buildContent(front: true)),
+        // backPositioning(_buildContent(front: false))
       ],
     );
 
@@ -208,6 +210,6 @@ class FlipCardState extends State<FlipCard>
   }
 }
 
-Widget _fill(Widget child) => Positioned.fill(child: child);
+// Widget _fill(Widget child) => Positioned.fill(child: child);
 
-Widget _noop(Widget child) => child;
+// Widget _noop(Widget child) => child;
