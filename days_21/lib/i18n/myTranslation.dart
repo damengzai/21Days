@@ -14,7 +14,7 @@ class MyTranslation extends Translations{
       'hasClicked': 'Has Clicked',
       'unClick': 'unClick',
       'giveUp': 'Give Up',
-      'giveUpNotice': 'Sad Give Up',
+      'giveUpNotice': 'Give Up,For Next Time',
       // 新建页
       'newTodo': 'new todo',
       'todoName':'name',
@@ -44,7 +44,7 @@ class MyTranslation extends Translations{
       'hasClicked': '今日已打卡',
       'unClick': '今日未打卡',
       'giveUp': '放弃',
-      'giveUpNotice': '很遗憾，已放弃',
+      'giveUpNotice': '已放弃，期待下次',
       // 新建页
       'newTodo': '新建习惯',
       'todoName': '名字',

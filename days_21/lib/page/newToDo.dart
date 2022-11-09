@@ -31,7 +31,9 @@ class NewToDo extends StatelessWidget {
         endDate: addToDoControl.endDate.value.toString(),
         clickDate: addToDoControl.startDate.value.toString(),
         status: toDoStatus.doing.index,
-        type: addToDoControl.revertClick.value ? toDoType.revert.index : toDoType.normal.index);
+        type: addToDoControl.revertClick.value
+            ? toDoType.revert.index
+            : toDoType.normal.index);
 
     toDoListControl.addDoingToDo(todo);
     insertTodo(todo).then((value) {
@@ -119,12 +121,20 @@ class NewToDo extends StatelessWidget {
             child: Column(
               children: [
                 // 名字
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(10),
-                      labelText: 'todoName'.tr,
-                      labelStyle: const TextStyle(fontSize: 14)),
+                GetBuilder(
+                  init: AddToDoControl(),
+                  builder: (_) {
+                    return TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(10),
+                          labelText: 'todoName'.tr,
+                          labelStyle: const TextStyle(fontSize: 14)),
+                    );
+                  },
+                  dispose: (_) {
+                    nameController.dispose();
+                  },
                 ),
                 // 开始日期
                 renderDateItem(
