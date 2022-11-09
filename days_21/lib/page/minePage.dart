@@ -23,7 +23,7 @@ class MinePage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  FilledButton(
+                  ElevatedButton(
                     onPressed: () {
                       Get.changeTheme(lightTheme);
                     },
@@ -36,7 +36,7 @@ class MinePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  FilledButton(
+                  ElevatedButton(
                     onPressed: () {
                       Get.changeTheme(darkTheme);
                     },
