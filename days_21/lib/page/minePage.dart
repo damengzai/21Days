@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../localTheme.dart';
 import '../control/toDoListControl.dart';
 import '../utils/toDoUtils.dart';
+import '../view/flipCard/flipCard.dart';
 
 class MinePage extends StatelessWidget {
   MinePage({super.key});
@@ -99,6 +100,11 @@ class MinePage extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          //FlipCard
+          FlipCard(
+            front: Text('front'),
+            back: Text('back'),
           ),
         ],
       ),
