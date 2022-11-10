@@ -5,6 +5,7 @@ import '../localTheme.dart';
 import '../control/toDoListControl.dart';
 import '../utils/toDoUtils.dart';
 import '../view/flipCard/flipCard.dart';
+import '../view/slidWrap/slidWrap.dart';
 
 class MinePage extends StatelessWidget {
   MinePage({super.key});
@@ -101,10 +102,23 @@ class MinePage extends StatelessWidget {
               ),
             ],
           ),
-          //FlipCard
-          FlipCard(
-            front: Text('front'),
-            back: Text('back'),
+          SizedBox(
+            width: Get.width,
+            height: 100,
+            child: SlidWrap(
+              sideWidth: 80.0,
+              child: Container(
+                child: Text('data'),
+                height: 40,
+                color: Colors.white,
+              ),
+              slidWidget: Container(
+                width: 80,
+                height: 40,
+                color: Colors.green,
+                child: Text('share'),
+              ),
+            ),
           ),
         ],
       ),

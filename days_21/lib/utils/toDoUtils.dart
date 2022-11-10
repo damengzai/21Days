@@ -4,6 +4,7 @@ import '../bean/toDo.dart';
 //获取所有todos
 Future<List<ToDo>> getAllTodos() async {
   List<Map> allTodoMap = await getAllTodoFromSql();
+  print(allTodoMap);
   List<ToDo> toDoList = allTodoMap.map((e) => ToDo.fromJson(e)).toList();
   return toDoList;
 }
