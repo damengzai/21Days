@@ -140,7 +140,7 @@ class ToDoItemView extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 16,
+                height: 26,
                 width: Get.width - rightWidth,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,

@@ -35,8 +35,9 @@ class NewToDo extends StatelessWidget {
             ? toDoType.revert.index
             : toDoType.normal.index);
 
-    toDoListControl.addDoingToDo(todo);
     insertTodo(todo).then((value) {
+      todo.id = value;
+      toDoListControl.addDoingToDo(todo);
       if (value > 0) {
         Get.showSnackbar(GetSnackBar(
           messageText: Text(
