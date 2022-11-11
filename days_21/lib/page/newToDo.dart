@@ -29,7 +29,7 @@ class NewToDo extends StatelessWidget {
         timeStamp: DateTime.now().millisecondsSinceEpoch,
         startDate: addToDoControl.startDate.value.toString(),
         endDate: addToDoControl.endDate.value.toString(),
-        clickDate: addToDoControl.startDate.value.toString(),
+        clickDate: DateTime.now().toString(),// addToDoControl.startDate.value.toString(),
         status: toDoStatus.doing.index,
         type: addToDoControl.revertClick.value
             ? toDoType.revert.index
