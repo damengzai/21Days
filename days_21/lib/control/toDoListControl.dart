@@ -20,6 +20,27 @@ class ToDoListControl extends GetxController {
     toDoList.removeWhere((element) => element.id == toDoId);
   }
 
+  updateToDo(ToDo todo) {
+    List<ToDo> doingToDoListTmp = [];
+    for (ToDo element in doingToDoList) {
+      if (element.id == todo.id) {
+        doingToDoListTmp.add(todo);
+      } else {
+        doingToDoListTmp.add(element);
+      }
+      doingToDoList.value = doingToDoListTmp;
+    }
+    List<ToDo> toDoListTmp = [];
+    for (ToDo element in toDoList) {
+      if (element.id == todo.id) {
+        toDoListTmp.add(todo);
+      } else {
+        toDoListTmp.add(element);
+      }
+      toDoList.value = toDoListTmp;
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();

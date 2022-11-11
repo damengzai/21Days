@@ -1,13 +1,15 @@
-import 'package:days_21/constant/constants.dart';
-import 'package:days_21/utils/toDoUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../constant/constants.dart';
+import '../control/toDoListControl.dart';
+import '../utils/toDoUtils.dart';
 import '../bean/toDo.dart';
 import '../bean/toDoStatus.dart';
 
 const rightWidth = 80;
 
 class ToDoItemView extends StatelessWidget {
+  ToDoListControl toDoListControl = Get.find();
   final ToDo toDo;
   var checkDays = [];
   bool todayHasClicked = false;
@@ -94,6 +96,7 @@ class ToDoItemView extends StatelessWidget {
     toDo.clickDate = DateTime.now().toString();
     updateTodo(toDo).then((value) {
       if (value > 0) {
+        toDoListControl.updateToDo(toDo);
         Get.showSnackbar(
           GetSnackBar(
             messageText: Text(
