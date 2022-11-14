@@ -32,7 +32,9 @@ class MyTranslation extends Translations{
       'testData': 'testData',
       'delete': 'delete',
       'deleteSuc': 'Delete Success',
-      'deleteFail': 'Delete Failed'
+      'deleteFail': 'Delete Failed',
+      //详情
+      'detailNotice':'reading sport knowing realMessage'
     },
     'zh_CN': {
       //主页
@@ -63,7 +65,9 @@ class MyTranslation extends Translations{
       'testData': '测试数据',
       'delete': '删除',
       'deleteSuc': '删除成功',
-      'deleteFail': '删除失败'
+      'deleteFail': '删除失败',
+      //详情
+      'detailNotice':'读书、运动、提升认知、外网信息'
     }
   };
 

@@ -52,8 +52,15 @@ class CurrentToDoPage extends StatelessWidget {
                   )
                 ],
               ),
-              child: ToDoItemView(
-                toDo: toDoListControl.doingToDoList[index],
+              child: GestureDetector(
+                onTap: () {
+                  Get.toNamed('/singleToDo',
+                    arguments: toDoListControl.doingToDoList[index],
+                  );
+                },
+                child: ToDoItemView(
+                  toDo: toDoListControl.doingToDoList[index],
+                ),
               ),
             ); // Text(toDoListControl.toDoList[index].name);
           })),

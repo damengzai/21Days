@@ -1,3 +1,4 @@
+import 'package:days_21/page/singleToDo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,8 @@ void main() {
     // home: MyApp(),
     getPages: [
       GetPage(name: '/home', page: () => MyApp()),
-      GetPage(name: '/newToDo', page: () => NewToDo())
+      GetPage(name: '/newToDo', page: () => NewToDo()),
+      GetPage(name: '/singleToDo', page: () => SingleToDo())
     ],
   ));
 }
