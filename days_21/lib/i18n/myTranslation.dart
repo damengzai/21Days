@@ -33,6 +33,7 @@ class MyTranslation extends Translations{
       'delete': 'delete',
       'deleteSuc': 'Delete Success',
       'deleteFail': 'Delete Failed',
+      'directToSingle': 'Direct To First ToDo',
       //详情
       'detailNotice':'reading sport knowing realMessage'
     },
@@ -66,6 +67,7 @@ class MyTranslation extends Translations{
       'delete': '删除',
       'deleteSuc': '删除成功',
       'deleteFail': '删除失败',
+      'directToSingle': '直接进入第一个todo',
       //详情
       'detailNotice':'读书、运动、提升认知、外网信息'
     }

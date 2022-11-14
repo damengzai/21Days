@@ -1,10 +1,9 @@
-import 'package:days_21/constant/constants.dart';
+import '../constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../localTheme.dart';
 import '../control/toDoListControl.dart';
 import '../utils/toDoUtils.dart';
-import '../view/flipCard/flipCard.dart';
 import '../view/slidWrap/slidWrap.dart';
 
 class MinePage extends StatelessWidget {
@@ -67,7 +66,7 @@ class MinePage extends StatelessWidget {
                       width: 100,
                       child: TextField(
                         controller: idController,
-                        decoration: InputDecoration(labelText: 'id'),
+                        decoration: const InputDecoration(labelText: 'id'),
                         keyboardType: TextInputType.number,
                       ),
                     ),
@@ -107,18 +106,27 @@ class MinePage extends StatelessWidget {
             height: 100,
             child: SlidWrap(
               sideWidth: 80.0,
-              child: Container(
-                child: Text('data'),
-                height: 40,
-                color: Colors.white,
-              ),
               slidWidget: Container(
                 width: 80,
                 height: 40,
                 color: Colors.green,
-                child: Text('share'),
+                child: const Text('share'),
+              ),
+              child: Container(
+                height: 40,
+                color: Colors.white,
+                child: const Text('data'),
               ),
             ),
+          ),
+          GestureDetector(
+            onTap: () {
+              if (toDoListControl.doingToDoList.isNotEmpty) {
+                Get.toNamed('/singleToDo',
+                    arguments: toDoListControl.doingToDoList[0]);
+              }
+            },
+            child: Text('directToSingle'.tr),
           ),
         ],
       ),
