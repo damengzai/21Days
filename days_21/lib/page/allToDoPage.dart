@@ -21,6 +21,7 @@ class AllToDoPage extends StatelessWidget {
     return Center(
       child: Obx(
         () => ListView.builder(
+          itemExtent: 114,
           itemCount: toDoListControl.toDoList.length,
           itemBuilder: (BuildContext context, int index) {
             return FlipCard(

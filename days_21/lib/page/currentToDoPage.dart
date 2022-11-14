@@ -34,6 +34,7 @@ class CurrentToDoPage extends StatelessWidget {
     return Center(
       child: Obx(() => ListView.builder(
           itemCount: toDoListControl.doingToDoList.length,
+          itemExtent: 114,
           itemBuilder: (BuildContext context, int index) {
             return Slidable(
               key: Key('i_$index'),
