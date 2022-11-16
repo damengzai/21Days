@@ -57,7 +57,7 @@ Future<int> insertTodoToSql(ToDo todo) async {
 //查询所有数据
 Future<List<Map>> getAllTodoFromSql() async {
   Database db = await getDatabase();
-  List<Map> list = await db.rawQuery('SELECT * FROM $TABLE_NAME');
+  List<Map> list = await db.rawQuery('SELECT * FROM $TABLE_NAME ORDER BY id DESC');
   await db.close();
   return list;
 }
