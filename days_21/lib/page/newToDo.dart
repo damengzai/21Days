@@ -1,6 +1,7 @@
-import 'package:days_21/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../constant/constants.dart';
+import '../control/mainPageControl.dart';
 import '../bean/toDo.dart';
 import '../control/toDoListControl.dart';
 import '../utils/toDoUtils.dart';
@@ -12,6 +13,7 @@ class NewToDo extends StatelessWidget {
 
   final addToDoControl = Get.put(AddToDoControl());
   ToDoListControl toDoListControl = Get.find();
+  MainPageControl mainPageControl = Get.find();
 
   TextEditingController nameController = TextEditingController();
 
@@ -39,6 +41,7 @@ class NewToDo extends StatelessWidget {
       todo.id = value;
       toDoListControl.addDoingToDo(todo);
       if (value > 0) {
+        mainPageControl.scheduleDailyTenAMNotification();
         Get.showSnackbar(GetSnackBar(
           messageText: Text(
             'addSuc'.tr,
@@ -168,6 +171,20 @@ class NewToDo extends StatelessWidget {
                         })),
                     Text(
                       'revertClick'.tr,
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                    )
+                  ],
+                ),
+                //定时提醒
+                Row(
+                  children: [
+                    Obx(() => Checkbox(
+                        value: addToDoControl.noticeAtTen.value,
+                        onChanged: (bool? checked) {
+                          addToDoControl.setNoticeAtTen(checked ?? false);
+                        })),
+                    Text(
+                      'noticeAtTen'.tr,
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
                     )
                   ],

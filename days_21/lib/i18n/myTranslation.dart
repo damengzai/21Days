@@ -27,6 +27,7 @@ class MyTranslation extends Translations{
       'addSuc':'Add Success',
       'addFail': 'Add Failed',
       'nameNotEmpty': 'Name Not Empty',
+      'noticeAtTen': 'Notice At Ten',
       // 我的页
       'changeTheme': 'change theme',
       'testData': 'testData',
@@ -61,6 +62,7 @@ class MyTranslation extends Translations{
       'addSuc':'添加成功',
       'addFail': '添加失败',
       'nameNotEmpty': '名字不可为空',
+      'noticeAtTen': '定时提醒',
       // 我的页
       'changeTheme': '主题选择',
       'testData': '测试数据',

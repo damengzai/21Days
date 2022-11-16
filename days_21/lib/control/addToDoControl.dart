@@ -12,6 +12,8 @@ class AddToDoControl extends GetxController {
 
   //是否反向打卡
   Rx<bool> revertClick = false.obs;
+  //是否定时提醒
+  Rx<bool> noticeAtTen = false.obs;
 
   setStartDate(DateTime startDateTmp) {
     startDate.value = startDateTmp;
@@ -22,5 +24,8 @@ class AddToDoControl extends GetxController {
   }
   setRevertClick(bool revertClickTmp) {
     revertClick.value = revertClickTmp;
+  }
+  setNoticeAtTen(bool notice) {
+    noticeAtTen.value = notice;
   }
 }
